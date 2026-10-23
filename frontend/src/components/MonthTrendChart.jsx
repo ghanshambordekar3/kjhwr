@@ -17,31 +17,31 @@ export default function MonthTrendChart({ dailyTrend, onSelectDay, selectedDate 
   if (!dailyTrend || dailyTrend.length === 0) return null;
 
   return (
-    <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 lg:p-6 shadow-xl backdrop-blur-sm">
+    <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-3 sm:p-5 lg:p-6 shadow-xl backdrop-blur-sm">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 mb-3 border-b border-slate-800 gap-2">
         <div>
-          <h3 className="text-sm font-bold text-white flex items-center gap-2">
-            <Calendar className="h-4 w-4 text-cyan-400" />
-            January 2026 Daily Forecast Performance Trajectory
+          <h3 className="text-xs sm:text-sm font-bold text-white flex items-center gap-2">
+            <Calendar className="h-4 w-4 text-cyan-400 shrink-0" />
+            <span>January 2026 Daily Forecast Performance Trajectory</span>
           </h3>
-          <p className="text-xs text-slate-400 mt-0.5">
+          <p className="text-[11px] sm:text-xs text-slate-400 mt-0.5">
             Day-by-day evolution of MAE and Bias. Click any day bar to drill down into its 48 settlement periods.
           </p>
         </div>
 
-        <div className="flex items-center gap-2 text-xs">
-          <span className="text-slate-400">Selected Day:</span>
+        <div className="flex items-center gap-2 text-[11px] sm:text-xs">
+          <span className="text-slate-400">Selected:</span>
           <span className="font-mono bg-cyan-950 text-cyan-300 border border-cyan-800 px-2 py-0.5 rounded font-bold">
             {selectedDate}
           </span>
         </div>
       </div>
 
-      <div className="h-64 w-full">
+      <div className="h-56 sm:h-64 w-full">
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart
             data={dailyTrend}
-            margin={{ top: 10, right: 10, left: -10, bottom: 20 }}
+            margin={{ top: 10, right: 10, left: -15, bottom: 20 }}
             onClick={(state) => {
               if (state && state.activePayload && state.activePayload.length) {
                 const day = state.activePayload[0].payload.date;

@@ -136,53 +136,53 @@ export default function ClientPitchModal({ isOpen, onClose }) {
   const slide = SLIDES[currentSlide];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
-      <div className="bg-[#0b1329] border border-cyan-500/40 rounded-3xl w-full max-w-4xl max-h-[90vh] flex flex-col shadow-2xl shadow-cyan-950/50 overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/85 backdrop-blur-md animate-fade-in">
+      <div className="bg-[#0b1329] border border-cyan-500/40 rounded-2xl sm:rounded-3xl w-full max-w-4xl max-h-[92vh] sm:max-h-[90vh] flex flex-col shadow-2xl shadow-cyan-950/50 overflow-hidden">
         {/* Modal Top Bar */}
-        <div className="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/60">
-          <div className="flex items-center gap-2.5">
-            <div className="h-8 w-8 rounded-lg bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center">
-              <Presentation className="h-4 w-4 text-cyan-400" />
+        <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/60">
+          <div className="flex items-center gap-2 sm:gap-2.5">
+            <div className="h-7 w-7 sm:h-8 sm:w-8 rounded-lg bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center shrink-0">
+              <Presentation className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-cyan-400" />
             </div>
             <div>
-              <h3 className="text-sm font-bold text-white">Client Pitch Mode (Executive Presentation)</h3>
-              <p className="text-[11px] text-slate-400">5-Minute Walkthrough for Utility Leadership & Trading Desk</p>
+              <h3 className="text-xs sm:text-sm font-bold text-white">Client Pitch Mode (Executive Presentation)</h3>
+              <p className="text-[10px] sm:text-[11px] text-slate-400">5-Minute Walkthrough for Utility Leadership & Trading Desk</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
+            className="p-1 sm:p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
           >
-            <X className="h-5 w-5" />
+            <X className="h-4 w-4 sm:h-5 sm:w-5" />
           </button>
         </div>
 
         {/* Slide Body */}
-        <div className="p-6 lg:p-8 flex-1 overflow-y-auto space-y-6">
+        <div className="p-4 sm:p-6 lg:p-8 flex-1 overflow-y-auto space-y-4 sm:space-y-6">
           <div>
-            <div className="text-[11px] font-mono uppercase tracking-wider text-cyan-400 font-semibold mb-1">
+            <div className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-cyan-400 font-semibold mb-0.5 sm:mb-1">
               Slide {currentSlide + 1} of {SLIDES.length}
             </div>
-            <h2 className="text-xl lg:text-2xl font-extrabold text-white tracking-tight">
+            <h2 className="text-base sm:text-xl lg:text-2xl font-extrabold text-white tracking-tight leading-snug">
               {slide.title}
             </h2>
-            <p className="text-sm text-slate-300 mt-1">
+            <p className="text-xs sm:text-sm text-slate-300 mt-1">
               {slide.subtitle}
             </p>
           </div>
 
           {/* Cards for this slide */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
             {slide.points.map((pt, i) => {
               const Icon = pt.icon;
               return (
-                <div key={i} className="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between hover:border-cyan-500/30 transition">
+                <div key={i} className="bg-slate-900/70 border border-slate-800 rounded-2xl p-3 sm:p-4 flex flex-col justify-between hover:border-cyan-500/30 transition">
                   <div>
-                    <div className="h-8 w-8 rounded-xl bg-cyan-950/80 border border-cyan-800/60 flex items-center justify-center mb-3 text-cyan-400">
-                      <Icon className="h-4 w-4" />
+                    <div className="h-7 w-7 sm:h-8 sm:w-8 rounded-xl bg-cyan-950/80 border border-cyan-800/60 flex items-center justify-center mb-2.5 text-cyan-400">
+                      <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                     </div>
-                    <h4 className="text-sm font-bold text-white mb-1.5">{pt.title}</h4>
-                    <p className="text-xs text-slate-400 leading-relaxed">{pt.text}</p>
+                    <h4 className="text-xs sm:text-sm font-bold text-white mb-1">{pt.title}</h4>
+                    <p className="text-[11px] sm:text-xs text-slate-400 leading-relaxed">{pt.text}</p>
                   </div>
                 </div>
               );
@@ -190,45 +190,45 @@ export default function ClientPitchModal({ isOpen, onClose }) {
           </div>
 
           {/* Presenter Speaker Notes Box */}
-          <div className="bg-cyan-950/40 border border-cyan-800/40 rounded-2xl p-4">
+          <div className="bg-cyan-950/40 border border-cyan-800/40 rounded-2xl p-3 sm:p-4">
             <div className="flex items-center gap-2 text-cyan-300 font-semibold text-xs mb-1">
-              <Lightbulb className="h-4 w-4" />
+              <Lightbulb className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
               <span>Suggested 5-Minute Pitch Script:</span>
             </div>
-            <p className="text-xs text-slate-300 italic font-sans leading-relaxed">
+            <p className="text-[11px] sm:text-xs text-slate-300 italic font-sans leading-relaxed">
               "{slide.speakerNotes}"
             </p>
           </div>
         </div>
 
         {/* Modal Footer Controls */}
-        <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/60 flex items-center justify-between">
-          <div className="flex items-center gap-1.5">
+        <div className="px-4 sm:px-6 py-3 sm:py-4 border-t border-slate-800 bg-slate-900/60 flex items-center justify-between">
+          <div className="flex items-center gap-1 sm:gap-1.5">
             {SLIDES.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setCurrentSlide(idx)}
-                className={`h-2 rounded-full transition-all ${
-                  idx === currentSlide ? 'w-6 bg-cyan-400' : 'w-2 bg-slate-700 hover:bg-slate-600'
+                className={`h-1.5 sm:h-2 rounded-full transition-all ${
+                  idx === currentSlide ? 'w-4 sm:w-6 bg-cyan-400' : 'w-1.5 sm:w-2 bg-slate-700 hover:bg-slate-600'
                 }`}
               />
             ))}
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             <button
               onClick={() => setCurrentSlide(prev => Math.max(0, prev - 1))}
               disabled={currentSlide === 0}
-              className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs font-medium disabled:opacity-40 transition"
+              className="flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs font-medium disabled:opacity-40 transition"
             >
-              <ChevronLeft className="h-4 w-4" /> Previous
+              <ChevronLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4" /> <span className="hidden xs:inline">Prev</span>
             </button>
             <button
               onClick={() => setCurrentSlide(prev => Math.min(SLIDES.length - 1, prev + 1))}
               disabled={currentSlide === SLIDES.length - 1}
-              className="flex items-center gap-1 px-4 py-1.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-xs font-semibold hover:from-cyan-400 hover:to-blue-500 disabled:opacity-40 transition"
+              className="flex items-center gap-1 px-3 sm:px-4 py-1.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-xs font-semibold hover:from-cyan-400 hover:to-blue-500 disabled:opacity-40 transition"
             >
-              Next <ChevronRight className="h-4 w-4" />
+              <span className="hidden xs:inline">Next</span> <ChevronRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
             </button>
           </div>
         </div>

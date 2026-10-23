@@ -49,38 +49,38 @@ export default function ErrorAnalysisPanel({
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       {/* 1. Error Distribution Histogram */}
-      <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 lg:p-6 shadow-xl backdrop-blur-sm flex flex-col justify-between">
+      <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-3 sm:p-5 lg:p-6 shadow-xl backdrop-blur-sm flex flex-col justify-between">
         <div>
           <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-800">
             <div>
-              <h3 className="text-sm font-bold text-white flex items-center gap-2">
-                <BarChart3 className="h-4 w-4 text-cyan-400" />
-                Forecast Error Distribution (MW)
+              <h3 className="text-xs sm:text-sm font-bold text-white flex items-center gap-2">
+                <BarChart3 className="h-4 w-4 text-cyan-400 shrink-0" />
+                <span>Forecast Error Distribution (MW)</span>
               </h3>
-              <p className="text-xs text-slate-400 mt-0.5">
-                Frequency distribution of (Forecast - Actual). Skewness reveals over-forecasting.
+              <p className="text-[11px] text-slate-400 mt-0.5">
+                Frequency of (Forecast - Actual). Skewness reveals over-forecasting.
               </p>
             </div>
-            <span className="font-mono text-xs bg-slate-800 px-2 py-0.5 rounded text-slate-300">
-              Median: {metrics?.p50_error > 0 ? `+${metrics?.p50_error}` : metrics?.p50_error} MW
+            <span className="font-mono text-[10px] sm:text-xs bg-slate-800 px-2 py-0.5 rounded text-slate-300 shrink-0">
+              P50: {metrics?.p50_error > 0 ? `+${metrics?.p50_error}` : metrics?.p50_error} MW
             </span>
           </div>
 
-          <div className="h-64 w-full">
+          <div className="h-56 sm:h-64 w-full">
             {loadingHist ? (
               <div className="h-full flex items-center justify-center text-xs text-slate-400">Loading distribution...</div>
             ) : histogramData.length > 0 ? (
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={histogramData} margin={{ top: 10, right: 10, left: -10, bottom: 20 }}>
+                <BarChart data={histogramData} margin={{ top: 10, right: 10, left: -15, bottom: 20 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
                   <XAxis
                     dataKey="bin_center"
                     stroke="#64748b"
-                    fontSize={10}
+                    fontSize={9}
                     tickFormatter={(v) => `${v > 0 ? '+' : ''}${Math.round(v)}`}
                     unit=" MW"
                   />
-                  <YAxis stroke="#64748b" fontSize={10} />
+                  <YAxis stroke="#64748b" fontSize={9} />
                   <Tooltip
                     content={({ active, payload }) => {
                       if (!active || !payload || !payload.length) return null;
@@ -115,8 +115,8 @@ export default function ErrorAnalysisPanel({
           </div>
         </div>
 
-        {/* Quantile Summary Strip */}
-        <div className="grid grid-cols-4 gap-2 pt-3 border-t border-slate-800 text-center font-mono">
+        {/* Quantile Summary Strip - 2x2 on mobile, 4 on desktop */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-3 border-t border-slate-800 text-center font-mono">
           <div className="bg-slate-950/60 p-2 rounded-xl border border-slate-800/80">
             <span className="text-[10px] font-sans text-slate-400 block">P10 Error</span>
             <span className="text-xs font-bold text-slate-200">
@@ -145,29 +145,29 @@ export default function ErrorAnalysisPanel({
       </div>
 
       {/* 2. Diurnal 24-Hour Error Profile */}
-      <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 lg:p-6 shadow-xl backdrop-blur-sm flex flex-col justify-between">
+      <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-3 sm:p-5 lg:p-6 shadow-xl backdrop-blur-sm flex flex-col justify-between">
         <div>
           <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-800">
             <div>
-              <h3 className="text-sm font-bold text-white flex items-center gap-2">
-                <Clock className="h-4 w-4 text-cyan-400" />
-                Diurnal Error Profile (Hour 00 to 23 GMT)
+              <h3 className="text-xs sm:text-sm font-bold text-white flex items-center gap-2">
+                <Clock className="h-4 w-4 text-cyan-400 shrink-0" />
+                <span>Diurnal Profile (00 to 23 GMT)</span>
               </h3>
-              <p className="text-xs text-slate-400 mt-0.5">
-                Hourly breakdown of MAE & Bias. Peak hours (07:00-19:00) carry high wholesale price risk.
+              <p className="text-[11px] text-slate-400 mt-0.5">
+                Hourly MAE & Bias. Peak hours (07:00-19:00) carry high wholesale price risk.
               </p>
             </div>
-            <span className="text-[10px] bg-red-950 text-red-300 border border-red-800/60 px-2 py-0.5 rounded font-mono">
-              Peak SP 15-38
+            <span className="text-[9px] sm:text-[10px] bg-red-950 text-red-300 border border-red-800/60 px-2 py-0.5 rounded font-mono shrink-0">
+              Peak SP15-38
             </span>
           </div>
 
-          <div className="h-64 w-full">
+          <div className="h-56 sm:h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={hourlyProfile} margin={{ top: 10, right: 10, left: -10, bottom: 20 }}>
+              <LineChart data={hourlyProfile} margin={{ top: 10, right: 10, left: -15, bottom: 20 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
-                <XAxis dataKey="hour_label" stroke="#64748b" fontSize={10} />
-                <YAxis stroke="#64748b" fontSize={10} unit=" MW" />
+                <XAxis dataKey="hour_label" stroke="#64748b" fontSize={9} />
+                <YAxis stroke="#64748b" fontSize={9} unit=" MW" />
                 <Tooltip
                   content={({ active, payload }) => {
                     if (!active || !payload || !payload.length) return null;

@@ -129,48 +129,51 @@ function MainApp() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 lg:px-8 py-6 space-y-6">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-3.5 sm:py-6 space-y-4 sm:space-y-6">
         {/* Navigation Tabs */}
-        <div className="flex items-center justify-between border-b border-slate-800 pb-2">
-          <div className="flex items-center gap-2">
+        <div className="flex items-center justify-between border-b border-slate-800 pb-2 gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0">
             <button
               onClick={() => setActiveTab('overview')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition ${
+              className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-semibold transition shrink-0 whitespace-nowrap ${
                 activeTab === 'overview'
                   ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-sm'
                   : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
               }`}
             >
-              <Zap className="h-4 w-4" />
-              Forecast Accuracy & Time Series
+              <Zap className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
+              <span className="hidden sm:inline">Forecast Accuracy & Time Series</span>
+              <span className="sm:hidden">Forecasts</span>
             </button>
 
             <button
               onClick={() => setActiveTab('procurement')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition ${
+              className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-semibold transition shrink-0 whitespace-nowrap ${
                 activeTab === 'procurement'
                   ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm'
                   : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
               }`}
             >
-              <Flame className="h-4 w-4" />
-              Thermal Procurement & Residual Demand
+              <Flame className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
+              <span className="hidden sm:inline">Thermal Procurement & Residual Demand</span>
+              <span className="sm:hidden">Procurement</span>
             </button>
 
             <button
               onClick={() => setActiveTab('month_trend')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition ${
+              className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-semibold transition shrink-0 whitespace-nowrap ${
                 activeTab === 'month_trend'
                   ? 'bg-blue-500/20 text-blue-300 border border-blue-500/40 shadow-sm'
                   : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
               }`}
             >
-              <Calendar className="h-4 w-4" />
-              January 2026 Trajectory
+              <Calendar className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
+              <span className="hidden sm:inline">January 2026 Trajectory</span>
+              <span className="sm:hidden">Trajectory</span>
             </button>
           </div>
 
-          <div className="hidden sm:flex items-center gap-2 text-xs text-slate-400">
+          <div className="hidden lg:flex items-center gap-2 text-xs text-slate-400 shrink-0">
             <span className="font-mono bg-slate-900 px-2.5 py-1 rounded-lg border border-slate-800">
               Elexon: FUELHH & WINDFOR
             </span>
