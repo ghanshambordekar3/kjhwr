@@ -265,7 +265,7 @@ $env:PYTHONPATH="backend"; python -m pytest backend/tests -v
 
 ---
 
-## 10. AI Tools Disclosure
+## 9. AI Tools Disclosure
 
 In accordance with assignment guidelines, **AI tools (Google Gemini / Antigravity)** were utilized to assist with:
 1. Researching Elexon BMRS endpoint stream specifications and UK settlement rules.
