@@ -27,7 +27,7 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://kjhwr.vercel.app",
+        "https://kjhwr-2.onrender.com",
         "http://localhost:3000",
     ],
     allow_credentials=True,
