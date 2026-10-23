@@ -121,7 +121,6 @@ d:\UK_Electicity_Utility/
 ├── vercel.json                         # Root Vercel configuration
 ├── Procfile                            # Heroku / Render deployment descriptor
 ├── runtime.txt                         # Python runtime definition (Python 3.11.9)
-├── VIDEO_DEMO_SCRIPT.md                # 10-Minute Video Demo Script (Part 1 & Part 2)
 └── README.md                           # Master product & technical documentation
 ```
 
@@ -243,14 +242,8 @@ docker compose down
    - `VITE_API_BASE_URL` = your deployed backend URL (e.g., `https://uk-gridflex-backend.herokuapp.com`).
 5. The included `frontend/vercel.json` ensures full SPA routing support.
 
-### Backend on Heroku / Render / Railway
-1. **Heroku**:
-   ```bash
-   heroku create uk-gridflex-backend
-   git push heroku main
-   ```
-   Uses the provided `Procfile` (`web: cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT`) and `runtime.txt` (`python-3.11.9`).
-2. **Render / Railway**: Select "Docker" or "Python" build, set start command to `uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT`.
+### Backend on Render
+1. **Render**: Select "Docker" or "Python" build, set start command to `uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT`.
 
 ---
 
@@ -269,22 +262,6 @@ $env:PYTHONPATH="backend"; python -m pytest backend/tests -v
 - `test_metrics_calculation_synthetic`: Verifies mathematical exactness of MAE, RMSE, MAPE, and Bias against known fixtures.
 - `test_empty_dataframe_metrics`: Asserts graceful handling of empty queries.
 - `test_system_status`, `test_forecast_evaluation_january`, `test_thermal_procurement_plan`, `test_export_csv`: End-to-end API integration tests.
-
----
-
-## 9. Deliverables & Video Demo
-
-### 9.1 Video Presentation
-As specified in the assignment requirements, a comprehensive 10-minute unlisted YouTube video has been scripted and recorded:
-- **Part 1 (0:00 - 5:00)**: Client Pitch to Utility Leadership (Demonstrating commercial value, January 2026 empirical audit, and £180k+ net savings).
-- **Part 2 (5:00 - 10:00)**: Technical Lead Review (System architecture, point-in-time matching algorithm, Pydantic data schemas, and Docker setup).
-- **Video Link**: `https://youtu.be/UNLISTED_DEMO_LINK_PLACEHOLDER` *(Add your unlisted YouTube link here)*
-- Full word-for-word transcript and timing guide: [VIDEO_DEMO_SCRIPT.md](VIDEO_DEMO_SCRIPT.md)
-
-### 9.2 Interactive Built-in Presentations
-The web app includes two interactive walkthrough modals built directly into the UI:
-1. Click **Client Pitch (5 Min)** in the top navigation to view the executive deck with talking points.
-2. Click **Tech Review (5 Min)** in the top navigation to view architecture diagrams, math formulations, and code review notes.
 
 ---
 
