@@ -232,7 +232,7 @@ docker compose down
 
 ---
 
-## 7. Cloud Deployment (Vercel & Heroku / Render)
+## 7. Cloud Deployment (Vercel / Render)
 
 ### Frontend on Vercel
 1. Link the repository to [Vercel](https://vercel.com).
