@@ -11,7 +11,8 @@ import {
   CheckCircle,
   Lightbulb,
   Zap,
-  DollarSign
+  DollarSign,
+  Sliders
 } from 'lucide-react';
 
 const SLIDES = [

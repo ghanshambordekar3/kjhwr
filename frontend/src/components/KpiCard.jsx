@@ -1,8 +1,20 @@
 import React from 'react';
 import { TrendingUp, AlertTriangle, ArrowUpRight, ArrowDownRight, Compass, Flame, ShieldAlert } from 'lucide-react';
 
-export default function KpiCard({ metrics }) {
-  if (!metrics) return null;
+export default function KpiCard({ metrics, isLoading }) {
+  if (!metrics || isLoading) {
+    return (
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 lg:gap-4 animate-pulse">
+        {[1, 2, 3, 4, 5, 6].map((i) => (
+          <div key={i} className="bg-slate-900/60 border border-slate-800 rounded-2xl p-4 h-32 flex flex-col justify-between">
+            <div className="h-3 bg-slate-800 rounded w-2/3" />
+            <div className="h-7 bg-slate-800 rounded w-4/5 my-2" />
+            <div className="h-2 bg-slate-800 rounded w-1/2" />
+          </div>
+        ))}
+      </div>
+    );
+  }
 
   const isOverforecast = metrics.bias > 0;
   const overRatio = metrics.total_periods > 0

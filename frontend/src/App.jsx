@@ -23,7 +23,42 @@ import TechReviewModal from './components/TechReviewModal';
 
 import { fetchSystemStatus, fetchForecastEvaluation } from './services/api';
 
-export default function App() {
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+  componentDidCatch(error, errorInfo) {
+    console.error("UI Error caught by boundary:", error, errorInfo);
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-screen bg-[#070b14] text-white flex flex-col items-center justify-center p-6 text-center">
+          <div className="h-16 w-16 bg-red-950/80 border border-red-700/60 rounded-2xl flex items-center justify-center text-red-400 mb-4 text-2xl">
+            ⚠️
+          </div>
+          <h2 className="text-xl font-bold mb-2">Something went wrong loading the dashboard</h2>
+          <p className="text-xs text-slate-400 max-w-md mb-4 font-mono bg-slate-900 p-3 rounded-lg border border-slate-800">
+            {this.state.error?.message || String(this.state.error)}
+          </p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-xl text-xs font-semibold transition"
+          >
+            Reload Application
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
+function MainApp() {
   const [activeTab, setActiveTab] = useState('overview'); // 'overview' | 'procurement' | 'month_trend'
   const [filters, setFilters] = useState({
     dateFrom: '2026-01-01',
@@ -163,7 +198,7 @@ export default function App() {
         )}
 
         {/* Executive KPI Ribbon */}
-        <KpiCard metrics={evalData?.metrics} />
+        <KpiCard metrics={evalData?.metrics} isLoading={loading && !evalData} />
 
         {/* Tab 1: Overview - Forecast vs Actual & Error Analysis */}
         {activeTab === 'overview' && (
@@ -251,5 +286,13 @@ export default function App() {
         onClose={() => setIsTechReviewOpen(false)}
       />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <ErrorBoundary>
+      <MainApp />
+    </ErrorBoundary>
   );
 }
