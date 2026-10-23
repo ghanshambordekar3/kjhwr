@@ -234,16 +234,42 @@ docker compose down
 
 ## 7. Cloud Deployment (Vercel / Render)
 
-### Frontend on Vercel
+### Backend on Render
+1. Go to [Render](https://render.com) → **New** → **Web Service** and connect your GitHub repository.
+2. Set the following:
+   - **Language**: `Python 3`
+   - **Branch**: `main`
+   - **Root Directory**: `backend`
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+3. Add the following **Environment Variables**:
+   - `PORT` = `8000`
+   - `ELEXON_API_BASE` = `https://data.elexon.co.uk/bmrs/api/v1`
+4. Click **Create Web Service**. Render will build and deploy automatically.
+5. Note your backend URL (e.g., `https://kjhwr-x06s.onrender.com`) — you will need it for the frontend.
+6. Verify the backend is live by visiting: `https://<your-backend>.onrender.com/api/status`
+
+### Frontend on Render
+1. Go to [Render](https://render.com) → **New** → **Web Service** and connect the same repository.
+2. Set the following:
+   - **Language**: `Node`
+   - **Branch**: `main`
+   - **Root Directory**: `frontend`
+   - **Build Command**: `npm install && npm run build`
+   - **Start Command**: `npx serve -s dist -l 3000`
+3. Add the following **Environment Variable**:
+   - `VITE_API_BASE_URL` = `https://<your-backend>.onrender.com` (your Render backend URL from above)
+4. Click **Create Web Service**. Render will build and serve the React app.
+
+### Frontend on Vercel (Alternative)
 1. Link the repository to [Vercel](https://vercel.com).
-2. Set the root directory to `frontend` (or use root with `vercel.json`).
-3. Set the build command to `npm run build` and output directory to `dist`.
-4. Configure the environment variable:
-   - `VITE_API_BASE_URL` = your deployed backend URL (e.g., `https://uk-gridflex-backend.herokuapp.com`).
+2. Set the **Root Directory** to `frontend`.
+3. Set **Build Command** to `npm run build` and **Output Directory** to `dist`.
+4. Add the **Environment Variable**:
+   - `VITE_API_BASE_URL` = `https://<your-backend>.onrender.com`
 5. The included `frontend/vercel.json` ensures full SPA routing support.
 
-### Backend on Render
-1. **Render**: Select "Docker" or "Python" build, set start command to `uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT`.
+> **Note**: `VITE_API_BASE_URL` is baked into the frontend bundle at build time by Vite. Any change to this value requires a redeploy of the frontend.
 
 ---
 
