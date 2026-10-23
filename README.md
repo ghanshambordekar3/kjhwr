@@ -37,7 +37,7 @@ To optimize procurement costs, the desk must determine how much additional conve
 |  - Executive KPI Ribbon (MAE, RMSE, MAPE, Systematic Bias, Peak/Off-Peak MAE)     |
 |  - Point-in-Time Forecast vs Actual Time Series with Settlement Scrubber          |
 |  - Error Frequency Histogram & Diurnal 24-Hour Profile                            |
-|  - Thermal Procurement & Residual Demand Planner (P90 Risk Buffer Simulator)     |
+|  - Thermal Procurement & Residual Demand Planner (P90 Risk Buffer Simulator)      |
 |  - January 2026 Trajectory & Daily Drill-Down                                     |
 |  - Embedded 5-Min Client Pitch & 5-Min Tech Review Interactive Presentations      |
 +------------------------------------------+----------------------------------------+
@@ -46,9 +46,9 @@ To optimize procurement costs, the desk must determine how much additional conve
 +-----------------------------------------------------------------------------------+
 |                              FastAPI Python Backend                               |
 |  - main.py: REST endpoints, CORS, OpenAPI Swagger docs (/docs)                    |
-|  - services/forecast_engine.py: Temporal cutoff filtering (publishTime <= D-1)   |
+|  - services/forecast_engine.py: Temporal cutoff filtering (publishTime <= D-1)    |
 |  - services/metrics_engine.py: Vectorized accuracy metrics & percentiles (NumPy)  |
-|  - services/procurement_engine.py: Residual demand & financial cashout calculator|
+|  - services/procurement_engine.py: Residual demand & financial cashout calculator |
 |  - services/elexon_service.py: Dual-mode engine (Jan 2026 Golden Cache + Live API)|
 +------------------------------------------+----------------------------------------+
                                            | HTTP Requests
